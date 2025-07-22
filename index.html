@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify Clone - Your Music, Your Moment</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="logo">
+          <i class="fab fa-spotify"></i>
+          Spotify Clone
+        </div>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">Browse</a></li>
+          <li><a href="#">Your Library</a></li>
+          <li><a href="#">Premium</a></li>
+        </ul>
+        <div class="user-actions">
+          <button class="btn-secondary">Sign up</button>
+          <button class="btn-primary">Log in</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1>Your Music Universe</h1>
+          <p>
+            Discover millions of songs, create playlists, and enjoy your
+            favorite tracks with premium quality sound.
+          </p>
+          <button class="play-all-btn" id="playAllBtn">
+            <i class="fas fa-play"></i>
+            Play All
+          </button>
+        </div>
+        <div class="hero-visual">
+          <div class="music-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Bar -->
+      <section class="search-section">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="What do you want to listen to?"
+          />
+          <button class="clear-search" id="clearSearch">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- Quick Access -->
+      <section class="quick-access">
+        <h2>Jump back in</h2>
+        <div class="quick-grid">
+          <div class="quick-item" data-category="liked">
+            <i class="fas fa-heart"></i>
+            <span>Liked Songs</span>
+          </div>
+          <div class="quick-item" data-category="recent">
+            <i class="fas fa-clock"></i>
+            <span>Recently Played</span>
+          </div>
+          <div class="quick-item" data-category="top">
+            <i class="fas fa-fire"></i>
+            <span>Top Hits</span>
+          </div>
+          <div class="quick-item" data-category="discover">
+            <i class="fas fa-star"></i>
+            <span>Discover Weekly</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Song Section -->
+      <section class="song-section">
+        <div class="section-header">
+          <h2 class="section-title">Featured Tracks</h2>
+          <a href="#" class="view-all">View all</a>
+        </div>
+        <div class="songs-grid" id="songsList">
+          <!-- Songs will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Recently Played -->
+      <section class="song-section">
+        <div class="section-header">
+          <h2 class="section-title">Recently Played</h2>
+          <a href="#" class="view-all">View all</a>
+        </div>
+        <div class="horizontal-scroll" id="recentlyPlayed">
+          <!-- Recently played items will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Popular Artists -->
+      <section class="song-section">
+        <div class="section-header">
+          <h2 class="section-title">Popular Artists</h2>
+          <a href="#" class="view-all">View all</a>
+        </div>
+        <div class="artists-grid" id="artistsList">
+          <!-- Artists will be populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Playlists -->
+      <section class="song-section">
+        <div class="section-header">
+          <h2 class="section-title">Your Playlists</h2>
+          <button class="create-playlist-btn" id="createPlaylistBtn">
+            <i class="fas fa-plus"></i>
+            Create Playlist
+          </button>
+        </div>
+        <div class="playlists-grid" id="playlistsGrid">
+          <!-- Playlists will be populated by JavaScript -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Player -->
+    <div class="player-container">
+      <div class="player-content">
+        <!-- Current Song Info -->
+        <div class="current-song">
+          <div class="current-cover" id="currentCover">
+            <i class="fas fa-music"></i>
+          </div>
+          <div class="current-info">
+            <h4 id="currentTitle">Choose a song</h4>
+            <p id="currentArtist">Start listening to music</p>
+          </div>
+          <div class="song-actions">
+            <button class="action-btn" id="likeBtn" title="Like">
+              <i class="far fa-heart"></i>
+            </button>
+            <button
+              class="action-btn"
+              id="addToPlaylistBtn"
+              title="Add to playlist"
+            >
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Player Controls -->
+        <div class="player-controls">
+          <div class="control-buttons">
+            <button class="control-btn" id="shuffleBtn" title="Shuffle">
+              <i class="fas fa-random"></i>
+            </button>
+            <button class="control-btn" id="prevBtn" title="Previous">
+              <i class="fas fa-step-backward"></i>
+            </button>
+            <button class="control-btn main" id="masterPlay" title="Play/Pause">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="control-btn" id="nextBtn" title="Next">
+              <i class="fas fa-step-forward"></i>
+            </button>
+            <button class="control-btn" id="repeatBtn" title="Repeat">
+              <i class="fas fa-redo"></i>
+            </button>
+          </div>
+          <div class="progress-container">
+            <span class="time" id="currentTime">0:00</span>
+            <div class="progress-bar-container" id="progressContainer">
+              <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-handle" id="progressHandle"></div>
+              </div>
+            </div>
+            <span class="time" id="totalTime">0:00</span>
+          </div>
+        </div>
+
+        <!-- Volume and Additional Controls -->
+        <div class="volume-controls">
+          <button class="volume-btn" id="queueBtn" title="Queue">
+            <i class="fas fa-list"></i>
+          </button>
+          <button class="volume-btn" id="deviceBtn" title="Devices">
+            <i class="fas fa-desktop"></i>
+          </button>
+          <button class="volume-btn" id="volumeBtn" title="Volume">
+            <i class="fas fa-volume-up"></i>
+          </button>
+          <div class="volume-bar-container">
+            <div class="volume-bar" id="volumeBar">
+              <div class="volume-fill" id="volumeFill"></div>
+              <div class="volume-handle" id="volumeHandle"></div>
+            </div>
+          </div>
+          <button class="volume-btn" id="fullscreenBtn" title="Full Screen">
+            <i class="fas fa-expand"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading your music...</p>
+      </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer">
+      <!-- Toasts will be dynamically added here -->
+    </div>
+
+    <!-- Queue Modal -->
+    <div class="modal" id="queueModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Queue</h3>
+          <button class="close-modal" id="closeQueueModal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="queue-list" id="queueList">
+            <!-- Queue items will be populated here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Playlist Modal -->
+    <div class="modal" id="createPlaylistModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Create New Playlist</h3>
+          <button class="close-modal" id="closePlaylistModal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input
+            type="text"
+            id="playlistNameInput"
+            placeholder="Playlist name"
+          />
+          <textarea
+            id="playlistDescInput"
+            placeholder="Playlist description (optional)"
+          ></textarea>
+          <div class="modal-actions">
+            <button class="btn-secondary" id="cancelPlaylist">Cancel</button>
+            <button class="btn-primary" id="savePlaylist">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer" preload="none"></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
